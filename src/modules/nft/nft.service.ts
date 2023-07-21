@@ -11,11 +11,13 @@ import {
 
 @Injectable()
 export class NftService {
+  private logger: Logger;
   constructor(
     @InjectRepository(NftModel)
     private nftRepository: Repository<NftModel>,
-    private logger: Logger,
-  ) {}
+  ) {
+    this.logger = new Logger(NftService.name);
+  }
 
   async findAll(
     limit: number,

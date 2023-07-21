@@ -1,13 +1,17 @@
 import { Query, Resolver, Args, Mutation } from '@nestjs/graphql';
 import { Nft, NftsResp } from './nft.type';
 import { NftService } from '../nft.service';
+import { Logger } from '@nestjs/common';
 import { GetNftArgs, TransferNftArgs } from './nft.args';
 import { Auth, AuthUser } from '../../auth/auth.decorator';
 import { IAuthUser, UserRoles } from '../../auth/interfaces/auth.interface';
 
 @Resolver((returns) => Nft)
 export class NftResolver {
-  constructor(private readonly nftService: NftService) {}
+  private logger: Logger;
+  constructor(private readonly nftService: NftService) {
+    this.logger = new Logger(NftResolver.name);
+  }
 
   @Auth(UserRoles.CUSTOMER)
   @Query((returns) => NftsResp)
