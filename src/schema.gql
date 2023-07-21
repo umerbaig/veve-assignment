@@ -1,0 +1,41 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  transferNft(id: Float!, newOwner: Float!): Nft!
+}
+
+type Nft {
+  blockchainLink: String!
+  description: String!
+  imageUrl: String!
+  minDate: DateTime!
+  name: String!
+}
+
+type NftsResp {
+  edges: [Nft!]!
+  page_info: PageInfo!
+}
+
+type PageInfo {
+  has_more: Boolean!
+  limit: Float!
+  skip: Float!
+  total: Float!
+}
+
+input Pagination {
+  limit: Float!
+  skip: Float!
+}
+
+type Query {
+  nfts(pagination: Pagination!): NftsResp!
+}

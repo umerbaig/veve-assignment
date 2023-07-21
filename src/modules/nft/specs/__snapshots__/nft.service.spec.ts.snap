@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NftService findAll should return all nfts by user id 1`] = `
+Object {
+  "edges": Object {
+    "blockchainLink": "test",
+    "description": "test",
+    "imageUrl": "test",
+    "minDate": 2023-06-21T20:24:07.780Z,
+    "name": "test",
+  },
+  "page_info": Object {
+    "has_more": false,
+    "limit": 10,
+    "skip": 0,
+    "total": undefined,
+  },
+}
+`;
+
+exports[`NftService findAll should throw error that something went wrong 1`] = `[Error: Something went wrong]`;
+
+exports[`NftService transferNft should throw error that nft not found 1`] = `undefined`;
+
+exports[`NftService transferNft should transfer nft to the new owner 1`] = `
+Object {
+  "blockchainLink": "test",
+  "description": "test",
+  "imageUrl": "test",
+  "minDate": 2023-06-21T20:24:07.780Z,
+  "name": "test",
+}
+`;
