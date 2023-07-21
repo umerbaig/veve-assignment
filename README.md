@@ -34,6 +34,11 @@ $ npm run test
 $ npm run test:cov
 ```
 
+## Running the app via Docker compose 
+
+```bash
+docker-compose up
+```
 ## Authentication/Authorization
 
 * For authenticated routes need to provide a valid JWT token in request header i.e `Authorization: Bearer{youraccesstoken}`
@@ -48,11 +53,11 @@ $ npm run test:cov
 * We are assuming that a customer can tranfer his NFT to another customer.
 * For simplicity there is only role supported for now which is `CUSTOMER`
 * Customer can transfers NFT's they own and can query only their NFT's.
+* We are not covering the change of ownership of NFT log. Assumping that it's not part of the assignment.
 * To make things simple, we are not creating users modules. 
 
 ### What would you do differently if you were allocated more time?
 
-* I could add docker compose file for that by running just `docker-compose up` everything including MySql DB will be up and running in seconds.
 * I could add users, auth modules where we can fetch access token by login user.
 * Besides unit tests, I would add integration tests to validate the interaction between different components and ensure that the entire application functions correctly.
 * Extend the user authentication process to include user registration and password hashing for secure storage.
@@ -63,7 +68,6 @@ $ npm run test:cov
 
 * I could add integration tests to validate the interaction between different components and ensure that the entire application functions correctly.
 * I could add how database migrations are managed using TypeORM to handle schema changes and updates.
-*  Include guidelines or best practices for deploying the application, such as containerization using Docker.
 * I could add more robust logging in the entire app. 
 
 ### How did you decide on the technical and architectural choices used as part of your solution?

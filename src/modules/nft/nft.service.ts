@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NftModel } from '../../models/nft.model';
@@ -14,6 +14,7 @@ export class NftService {
   constructor(
     @InjectRepository(NftModel)
     private nftRepository: Repository<NftModel>,
+    private logger: Logger,
   ) {}
 
   async findAll(
@@ -48,11 +49,10 @@ export class NftService {
     newUserId: number,
   ): Promise<Nft> {
     const nft = await this.nftRepository.findOne({
-      where: { owner: currentUserId },
+      where: { owner: currentUserId, id },
     });
 
     if (!nft) {
-      console.log('hello there');
       throw NotFoundError('Nft not found!');
     }
 

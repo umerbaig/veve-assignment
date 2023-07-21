@@ -22,6 +22,7 @@ export class NftResolver {
     );
   }
 
+  @Auth(UserRoles.CUSTOMER)
   @Mutation((returns) => Nft)
   async transferNft(
     @Args() args: TransferNftArgs,

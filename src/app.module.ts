@@ -10,7 +10,7 @@ import { HealthModule } from './modules/health/health.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TimeoutInterceptor } from './shared/interceptor/timeout.interceptor';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Entities } from './utils/entities';
+import { Entities } from './models';
 
 @Module({
   imports: [
@@ -29,7 +29,7 @@ import { Entities } from './utils/entities';
         password: configService.get<string>('app.db.password'),
         database: configService.get<string>('app.db.name'),
         entities: Entities,
-        synchronize: true,
+        synchronize: configService.get<string>('app.nodeEnv') === 'development' ? true : false,
       }),
       inject: [ConfigService],
     }),

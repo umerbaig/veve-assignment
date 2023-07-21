@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  veve-asssignment:
+    container_name: veve-asssignment
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    hostname: veve-asssignment
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      veve_assignment_network:
+    entrypoint: []
+    command: npm run start:dev
+  veve-asssignment-mysql:
+    image: mysql
+    container_name: veve-asssignment-mysql
+    hostname: 0.0.0.0
+    env_file:
+      - .env
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - veve-assignment-mysql:/var/lib/memysql
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      veve_assignment_network:
+networks:
+  veve_assignment_network:
+
+volumes:
+  veve-assignment-mysql:
+
